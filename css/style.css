@@ -1,0 +1,263 @@
+/* emmashedden.github.io */
+
+:root {
+  --bg:        #e8edf2;
+  --text:      #1f2a33;
+  --muted:     #5b6a77;
+  --rule:      #cbd6e0;
+  --accent:    #8f2c2c;
+  --accent-soft: rgba(143, 44, 44, 0.35);
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Charter,
+           Georgia, "Times New Roman", serif;
+
+  /* overall content width */
+  --measure: 48rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 4rem 1.5rem 5rem;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: 1.0625rem;   /* 17px */
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+/* Links */
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--accent-soft);
+  text-underline-offset: 0.15em;
+  transition: text-decoration-color 120ms ease, color 120ms ease;
+}
+
+a:hover,
+a:focus-visible {
+  text-decoration-color: var(--accent);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Masthead */
+
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.masthead__portrait {
+  flex: 0 0 auto;
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 1px 2px rgba(31, 42, 51, 0.12),
+              0 8px 24px rgba(31, 42, 51, 0.10);
+}
+
+.masthead__name {
+  margin: 0 0 0.5rem;
+  font-size: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+.masthead__affiliation {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.masthead__affiliation strong {
+  display: block;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.masthead__links {
+  margin: 0.9rem 0 0;
+  font-size: 0.95rem;
+}
+
+.sep {
+  color: var(--muted);
+  margin: 0 0.5rem;
+}
+
+/* Sections */
+
+section {
+  margin-top: 3.25rem;
+}
+
+h2 {
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+p {
+  margin: 0 0 1.15rem;
+}
+
+p:last-child { margin-bottom: 0; }
+
+/* Entries: publications, positions, service */
+
+.entry + .entry {
+  margin-top: 1.5rem;
+}
+
+.entry__meta {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* no bullet list follows -> drop the trailing gap */
+.entry__meta:last-child {
+  margin-bottom: 0;
+}
+
+.entry ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  list-style: disc;
+}
+
+.entry li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.2rem;
+}
+
+.entry li::marker {
+  color: var(--rule);
+}
+
+.entry li:last-child { margin-bottom: 0; }
+
+.publications {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: publication;
+}
+
+.publications > li {
+  counter-increment: publication;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.publications > li + li {
+  margin-top: 1.75rem;
+}
+
+.publications > li::before {
+  content: "[" counter(publication) "]";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.publication__title {
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.publication__venue {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Small utilities */
+
+.note {
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--accent-soft);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+}
+
+.footer {
+  margin-top: 3.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+
+@media (max-width: 34rem) {
+  body {
+    padding: 2.5rem 1.25rem 3.5rem;
+    font-size: 1rem;
+  }
+
+  .masthead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .masthead__portrait {
+    width: 116px;
+    height: 116px;
+  }
+
+  .masthead__name {
+    font-size: 1.875rem;
+  }
+
+  section { margin-top: 2.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
